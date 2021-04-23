@@ -4,6 +4,6 @@ WORKDIR usr/src/app
 COPY package.json usr/src/app
 RUN npm install
 COPY . .
-RUN npm run build --prod
+RUN npm run ng build --prod
 EXPOSE 4200
 CMD ["npm","start"]

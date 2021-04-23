@@ -1,9 +1,13 @@
 FROM node:10-alpine
-RUN mkdir -p usr/src/app
-WORKDIR usr/src/app
-COPY package.json usr/src/app
+RUN mkdir -p /home/node/app/node_modules && chown -R node:node /home/node/app
+WORKDIR /home/node/app
+COPY package*.json ./
+USER node
 RUN npm install
-COPY . .
-RUN npm run ng build --prod
+COPY --chown=node:node . .
 EXPOSE 4200
 CMD ["npm","start"]
+
+
+
+

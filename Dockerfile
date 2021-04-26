@@ -51,9 +51,9 @@
 
 FROM node:12.7-alpine AS build
 RUN mkdir -p /home/node/app/node_modules && chown -R node:node /home/node/app
-ENV PATH /home/node/app/node_modules:$PATH   
+ENV PATH /home/node/app/node_modules/:$PATH   
 WORKDIR /home/node/app
-COPY package*.json ./
+COPY package.json ./
 USER node
 RUN npm install
  RUN npm cache clean --force

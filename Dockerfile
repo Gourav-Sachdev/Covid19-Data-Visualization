@@ -33,7 +33,7 @@
 ### STAGE 1: Build ###
 FROM node:12.7-alpine AS build
 WORKDIR /app
-ENV PATH /app/node_modules/.bin:$PATH
+ENV PATH /app/node_modules/:$PATH     
 COPY package.json package-lock.json ./
 RUN npm install
 #COPY . ./

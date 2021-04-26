@@ -37,7 +37,8 @@ RUN npm install
 COPY . .
 RUN npm run build --prod
 EXPOSE 4200
-CMD["npm","start"]
+CMD["node","app.js"]
+
 
 ### STAGE 2: Run ###
 # FROM nginx:1.17.1-alpine

@@ -42,9 +42,7 @@ RUN npm run build --prod
 ### STAGE 2: Run ###
 FROM nginx:1.17.1-alpine
 COPY nginx.conf /etc/nginx/nginx.conf
-<<<<<<< HEAD
-COPY --from=build /app/dist/covid19 /usr/share/nginx/html
-=======
 COPY --from=build /app/dist/covid19 /usr/share/nginx/html
 
->>>>>>> 59a95d3c643060c364efe84b2b45a938e3e0f799
+
+

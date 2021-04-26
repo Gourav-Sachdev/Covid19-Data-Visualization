@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 # FROM node:10-alpine
 # RUN mkdir -p usr/src/app
 # WORKDIR usr/src/app
@@ -9,8 +9,6 @@
 # EXPOSE 4200
 # CMD["npm","start"]
 
-=======
->>>>>>> 59a95d3c643060c364efe84b2b45a938e3e0f799
 ### STAGE 1: Build###
 # FROM node:12.7-alpine AS build
 # #WORKDIR /usr/src/app

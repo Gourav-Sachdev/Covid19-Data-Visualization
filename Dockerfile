@@ -19,8 +19,8 @@
 
 ### STAGE 1: Build ###
 FROM node:12.7-alpine AS build
-WORKDIR /usr/src/app
-ENV PATH /usr/src/app/node_modules/.bin:$PATH
+WORKDIR /app
+ENV PATH /app/node_modules/.bin:$PATH
 COPY package.json package-lock.json ./
 RUN npm install
 COPY . ./
@@ -29,5 +29,5 @@ RUN npm run build
 ### STAGE 2: Run ###
 FROM nginx:1.17.1-alpine
 COPY nginx.conf /etc/nginx/nginx.conf
-COPY --from=build /usr/src/app/dist/covid19 /usr/share/nginx/html
+COPY --from=build /app/dist/covid19 /usr/share/nginx/html
 

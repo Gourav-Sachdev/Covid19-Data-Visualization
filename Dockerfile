@@ -41,7 +41,7 @@ EXPOSE 4200
 
 
 ### STAGE 2: Run ###
-# FROM nginx:1.17.1-alpine
+ FROM nginx:1.17.1-alpine
 # COPY nginx/default.conf.template /etc/ngninx/conf.d/default.conf.template
 # COPY nginx/nginx.conf /etc/nginx/nginx.conf
 COPY --from=build /app/dist/covid19 /usr/share/nginx/html

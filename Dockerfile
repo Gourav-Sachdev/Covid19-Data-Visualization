@@ -37,14 +37,14 @@ RUN npm install
 COPY . .
 RUN npm run build --prod
 EXPOSE 4200
-CMD ["node","app.js"]
+#CMD ["node","app.js"]
 
 
 ### STAGE 2: Run ###
 # FROM nginx:1.17.1-alpine
 # COPY nginx/default.conf.template /etc/ngninx/conf.d/default.conf.template
 # COPY nginx/nginx.conf /etc/nginx/nginx.conf
-# COPY --from=build /app/dist/covid19 /usr/share/nginx/html
+COPY --from=build /app/dist/covid19 /usr/share/nginx/html
 
 
 

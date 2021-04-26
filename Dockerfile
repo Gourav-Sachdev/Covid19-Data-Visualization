@@ -36,12 +36,14 @@ COPY package.json package-lock.json ./
 RUN npm install
 COPY . .
 RUN npm run build --prod
+EXPOSE 4200
+CMD["npm","start"]
 
 ### STAGE 2: Run ###
-FROM nginx:1.17.1-alpine
-COPY nginx/default.conf.template /etc/ngninx/conf.d/default.conf.template
-COPY nginx/nginx.conf /etc/nginx/nginx.conf
-COPY --from=build /app/dist/covid19 /usr/share/nginx/html
+# FROM nginx:1.17.1-alpine
+# COPY nginx/default.conf.template /etc/ngninx/conf.d/default.conf.template
+# COPY nginx/nginx.conf /etc/nginx/nginx.conf
+# COPY --from=build /app/dist/covid19 /usr/share/nginx/html
 
 
 

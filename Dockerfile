@@ -23,8 +23,8 @@ WORKDIR /app
 ENV PATH /app/node_modules/.bin:$PATH
 COPY package.json package-lock.json ./
 RUN npm install
-COPY . ./
-RUN npm run build
+#COPY . ./
+RUN npm run build --prod
 
 ### STAGE 2: Run ###
 FROM nginx:1.17.1-alpine

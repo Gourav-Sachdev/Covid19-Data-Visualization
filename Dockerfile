@@ -4,7 +4,8 @@ WORKDIR /usr/src/app
 COPY package.json ./
 RUN npm install
 #COPY . /usr/src/app
-RUN ng build --prod
+#RUN ng build --prod
+RUN node_modules/.bin/ng build --prod
 
 ### STAGE 2: Run ###
 FROM nginx:1.17.1-alpine

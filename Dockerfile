@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # FROM node:10-alpine
 # RUN mkdir -p usr/src/app
 # WORKDIR usr/src/app
@@ -8,6 +9,8 @@
 # EXPOSE 4200
 # CMD["npm","start"]
 
+=======
+>>>>>>> 59a95d3c643060c364efe84b2b45a938e3e0f799
 ### STAGE 1: Build###
 # FROM node:12.7-alpine AS build
 # #WORKDIR /usr/src/app
@@ -39,4 +42,9 @@ RUN npm run build --prod
 ### STAGE 2: Run ###
 FROM nginx:1.17.1-alpine
 COPY nginx.conf /etc/nginx/nginx.conf
+<<<<<<< HEAD
 COPY --from=build /app/dist/covid19 /usr/share/nginx/html
+=======
+COPY --from=build /app/dist/covid19 /usr/share/nginx/html
+
+>>>>>>> 59a95d3c643060c364efe84b2b45a938e3e0f799

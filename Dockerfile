@@ -37,7 +37,7 @@ RUN npm install
 COPY . .
 RUN npm run build --prod
 EXPOSE 4200
-CMD["node","app.js"]
+CMD ["node","app.js"]
 
 
 ### STAGE 2: Run ###

@@ -42,10 +42,10 @@ EXPOSE 4200
 
 ### STAGE 2: Run ###
  FROM nginx:1.18.0
- COPY nginx/default.conf.template /etc/nginx/conf.d/default.conf.template
- COPY nginx/nginx.conf /etc/nginx/nginx.conf
+# COPY nginx/default.conf.template /etc/nginx/conf.d/default.conf.template
+ #COPY nginx/nginx.conf /etc/nginx/nginx.conf
 COPY --from=build /app/dist/covid19 /usr/share/nginx/html
-CMD /bin/bash -c "envsubst '\$PORT' < /etc/nginx/conf.d/default.conf.template > /etc/nginx/conf.d/default.conf" && nginx -g 'daemon off:'
+#CMD /bin/bash -c "envsubst '\$PORT' < /etc/nginx/conf.d/default.conf.template > /etc/nginx/conf.d/default.conf" && nginx -g 'daemon off:'
 
 
 

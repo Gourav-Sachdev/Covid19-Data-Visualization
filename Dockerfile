@@ -28,42 +28,27 @@
 # COPY nginx.conf /etc/nginx/nginx.conf
 # COPY --from=build /usr/src/app/dist/Covid19-Data-Visualization /usr/share/nginx/html 
 
-# ### STAGE 1: Build ###
-# FROM node:12.7-alpine AS build
-# WORKDIR /app
-# ENV PATH /app/node_modules/:$PATH     
-# COPY package.json package-lock.json ./
-# RUN npm install
-# COPY . .
-# RUN npm run build --prod
-# EXPOSE 4200
-# #CMD ["node","app.js"]
-
-
-# ### STAGE 2: Run ###
-#  FROM nginx:1.17.1-alpine
-# # COPY nginx/default.conf.template /etc/ngninx/conf.d/default.conf.template
-# # COPY nginx/nginx.conf /etc/nginx/nginx.conf
-# COPY --from=build /app/dist/covid19 /usr/share/nginx/html
-
-
-
-
+### STAGE 1: Build ###
 FROM node:12.7-alpine AS build
-RUN mkdir -p /home/node/app/node_modules && chown -R node:node /home/node/app
-ENV PATH /home/node/app/node_modules/:$PATH   
-WORKDIR /home/node/app
-COPY package.json ./
-USER node
+WORKDIR /app
+ENV PATH /app/node_modules/:$PATH     
+COPY package.json package-lock.json ./
 RUN npm install
- RUN npm cache clean --force
-COPY --chown=node:node . .
- RUN npm run build --prod
+COPY . .
+RUN npm run build --prod
 EXPOSE 4200
+#CMD ["node","app.js"]
 
-# ### STAGE 2: Run ###
-  FROM nginx:1.17.1-alpine
-# # COPY nginx/default.conf.template /etc/ngninx/conf.d/default.conf.template
-# # COPY nginx/nginx.conf /etc/nginx/nginx.conf
- COPY --from=build /home/node/app/dist/covid19 /usr/share/nginx/html
+
+### STAGE 2: Run ###
+ FROM nginx:1.18.0
+ COPY nginx/default.conf.template /etc/nginx/conf.d/default.conf.template
+ COPY nginx/nginx.conf /etc/nginx/nginx.conf
+COPY --from=build /app/dist/covid19 /usr/share/nginx/html
+CMD /bin/bash -c "envsubst '\$PORT' < /etc/nginx/conf.d/default.conf.template > /etc/nginx/conf.d/default.conf" && nginx -g 'daemon off:'
+
+
+
+
+
 
